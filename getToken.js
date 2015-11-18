@@ -1,7 +1,9 @@
 var request = require('sync-request');
 var fs = require('fs');
 
-var tokenFile = fs.readFileSync('./tmp/token.json','utf8');
+
+
+var tokenFile = fs.readFileSync(__dirname + '/tmp/token.json','utf8');
 if(tokenFile){
 	tokenFile = JSON.parse(tokenFile);
 }
@@ -35,7 +37,7 @@ if(tokenFile){
 					});
 
 	result = JSON.parse(result.body);
-	return result.token;
+	return exports.token = result.token;
 
     } else {
       return console.log("error");
@@ -45,5 +47,5 @@ if(tokenFile){
   
   function getOldToken(){
     // console.log("getting old token");
-    return tokenFile.token;
+    return exports.token = tokenFile.token;
   }
