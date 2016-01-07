@@ -3,6 +3,8 @@ var request = require('sync-request');
 var hsToken = require('./getToken.js');
 var contacts = require('./contacts.js');
 
+//change on c9
+
 exports.token = hsToken.token;
 
 exports.contacts = contacts;
