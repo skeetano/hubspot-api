@@ -1,14 +1,18 @@
 var request = require('sync-request');
 var fs = require('fs');
+var path = require('path');
 
 
 
-var tokenFile = fs.readFileSync(__dirname + '/tmp/token.json','utf8');
+var tokenFilePath = path.resolve(__dirname, 'tmp/token.json');
+var tokenFile = fs.readFileSync(tokenFilePath,'utf8');
 if(tokenFile){
 	tokenFile = JSON.parse(tokenFile);
+} else {
+	tokenFile.expires = 0;
 }
 
-  var expireDate = tokenFile.expires;
+ 
   var dateNow = Date.now();
 
   // console.log("now: " + dateNow);
@@ -18,7 +22,7 @@ if(tokenFile){
   // getNewToken(); 
   // getOldToken();
   
-  if(dateNow > expireDate){
+  if(dateNow > tokenFile.expires){
     return getNewToken();
   } else {
     return getOldToken();
@@ -30,7 +34,7 @@ if(tokenFile){
     var result =  request('GET', "https://script.googleusercontent.com/macros/echo?user_content_key=r6PQYm2I-fpNGMv_x7kcTm0Rn7yJMb7jj1pCgxDYtJLGFua3Yv8JNGMU__Wym1M63idhHz4Kx8d1Dmd0NaVYEx6P5FESz1f1m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnMEVOQjS1gN3xjCbA5kwf_qUiWili_QkYB4ggXK47JmS5KoL8us4WAIlcqImc5FeraV-rV9yhQ38&lib=MJPpkwD1QGijyWX8ojtZFktnfWGfgtIUb");
     if(result.statusCode == 200){ 
       
-	fs.writeFile("./tmp/token.json", result.body, function(err){
+	fs.writeFile(tokenFilePath, result.body, function(err){
 						if(err){
 							return console.log(err);
 						}
