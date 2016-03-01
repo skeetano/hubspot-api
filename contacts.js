@@ -20,7 +20,6 @@ exports.getByUtk = function (utk){
 
 exports.batch = function (payload){
   var url = "https://api.hubapi.com/contacts/v1/contact/batch?access_token="+ hsToken.token;
-// var url = 'http://requestb.in/1hapoh51';
   var result = request('post', url, {
     		json: payload,
     		headers: {

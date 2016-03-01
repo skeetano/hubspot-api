@@ -2,12 +2,14 @@ var path = require('path');
 var request = require('sync-request');
 var hsToken = require('./getToken.js');
 var contacts = require('./contacts.js');
+var files = require('./files.js');
 
 //change on c9
 
 exports.token = hsToken.token;
 
 exports.contacts = contacts;
+exports.files = files;
 
 exports.updateTemplate = function(id, content){
 	if (id == null){
