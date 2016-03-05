@@ -1,12 +1,13 @@
 var path = require('path');
 var request = require('sync-request');
-var hsToken = require('./getToken.js');
+var token = require('./getToken.js');
 var contacts = require('./contacts.js');
 var files = require('./files.js');
 
 //change on c9
 
-exports.token = hsToken.token;
+exports.token = token.token;
+exports.getToken = token.get;
 
 exports.contacts = contacts;
 exports.files = files;
@@ -21,7 +22,7 @@ exports.updateTemplate = function(id, content){
 	var url = "http://api.hubapi.com/content/api/v2/templates/" 
 				+ id 
 				+ "?access_token=" 
-				+ hsToken.token;
+				+ token.token;
 	
 	var result = request('put', url, {
 		json: {
@@ -47,7 +48,7 @@ exports.updateCustomModule = function(id, content){
 	var url = "https://api.hubapi.com/content/api/v4/custom-widgets/" 
 				+ id 
 				+ "?access_token=" 
-				+ hsToken.token;
+				+ token.token;
 	
 
 
@@ -73,7 +74,7 @@ exports.updateTopic = function(id, name, description){
 	var url = "https://api.hubapi.com/blogs/v3/topics/" 
 				+ id 
 				+ "?access_token=" 
-				+ hsToken.token;
+				+ token.token;
 	
 
 

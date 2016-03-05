@@ -5,21 +5,21 @@ var hsToken = require('./getToken.js');
 
 
 exports.getByEmail = function (email){
-  var url = "https://api.hubapi.com/contacts/v1/contact/email/" + email + "/profile?access_token="+ hsToken.token;
+  var url = "https://api.hubapi.com/contacts/v1/contact/email/" + email + "/profile?access_token="+ hsToken.get();
   var result = request('get', url);
   return result;
 }
 
 
 exports.getByUtk = function (utk){
-  var url = "https://api.hubapi.com/contacts/v1/contact/utk/" + utk + "/profile?access_token="+ hsToken.token;
+  var url = "https://api.hubapi.com/contacts/v1/contact/utk/" + utk + "/profile?access_token="+ hsToken.get();
   var result = request('get', url);
   return result;
 }
 
 
 exports.batch = function (payload){
-  var url = "https://api.hubapi.com/contacts/v1/contact/batch?access_token="+ hsToken.token;
+  var url = "https://api.hubapi.com/contacts/v1/contact/batch?access_token="+ hsToken.get();
   var result = request('post', url, {
     		json: payload,
     		headers: {
@@ -44,7 +44,7 @@ exports.createTextProperty = function (name,label,group){
       "formField": false
     }
     
-  var url = "https://api.hubapi.com/contacts/v2/properties?access_token="+ hsToken.token;
+  var url = "https://api.hubapi.com/contacts/v2/properties?access_token="+ hsToken.get();
   var result = request('post', url, {
     		json: payload,
     		headers: {
@@ -56,7 +56,7 @@ exports.createTextProperty = function (name,label,group){
 
 
 exports.getProperty = function (name){
-  var url = "https://api.hubapi.com/contacts/v2/properties/named/" + name + "?access_token="+ hsToken.token;
+  var url = "https://api.hubapi.com/contacts/v2/properties/named/" + name + "?access_token="+ hsToken.get();
   var result = request('get', url);
   return result;
 }
