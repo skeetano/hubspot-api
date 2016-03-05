@@ -11,6 +11,7 @@ exports.getToken = token.get;
 
 exports.contacts = contacts;
 exports.files = files;
+exports.templates = require('./templates.js');
 
 exports.updateTemplate = function(id, content){
 	if (id == null){
